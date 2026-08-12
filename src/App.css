@@ -1,0 +1,620 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b0b0b;
+  color: #f5f5f5;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  background: #0b0b0b;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  height: 64px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #222;
+  background: #0b0b0b;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  display: none;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-tabs button {
+  border: none;
+  background: transparent;
+  color: #888;
+  padding: 9px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.nav-tabs button:hover {
+  color: #fff;
+  background: #151515;
+}
+
+.nav-tabs button.active {
+  color: #fff;
+  background: #181818;
+}
+
+.badge {
+  margin-left: 6px;
+  background: #d9364f;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+}
+
+/* =========================
+   MAIN DISCOVER PAGE
+========================= */
+
+.main {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px 20px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.small-heading {
+  color: #777;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.heading h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+}
+
+.heading p {
+  color: #777;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+/* =========================
+   SWIPE AREA
+========================= */
+
+.swipe-area {
+  width: 370px;
+  height: 525px;
+  position: relative;
+  perspective: 1000px;
+}
+
+/* =========================
+   MOVIE CARD
+========================= */
+
+.card {
+  width: 370px;
+  height: 525px;
+  position: absolute;
+  overflow: hidden;
+
+  background: #171717;
+
+  border: 1px solid #292929;
+  border-radius: 12px;
+
+  cursor: grab;
+  user-select: none;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55);
+
+  touch-action: pan-y;
+  will-change: transform;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+/* =========================
+   NEXT CARD
+========================= */
+
+.current-card {
+  z-index: 5;
+}
+
+.next-card {
+  z-index: 1;
+
+  transform: translateY(10px) scale(0.96);
+
+  opacity: 0.55;
+
+  pointer-events: none;
+}
+
+/* =========================
+   POSTER
+========================= */
+
+.poster {
+  height: 350px;
+
+  background: #222;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.poster::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 100px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.8)
+  );
+}
+
+.poster-emoji {
+  font-size: 85px;
+
+  position: relative;
+
+  z-index: 1;
+
+  filter: grayscale(15%);
+}
+
+.poster-title {
+  position: absolute;
+
+  bottom: 18px;
+
+  left: 18px;
+  right: 18px;
+
+  z-index: 2;
+
+  font-size: 25px;
+
+  font-weight: 700;
+
+  color: white;
+}
+
+/* =========================
+   MOVIE INFORMATION
+========================= */
+
+.movie-info {
+  padding: 17px 19px;
+}
+
+.movie-info h2 {
+  margin: 0 0 7px;
+
+  font-size: 21px;
+
+  font-weight: 600;
+}
+
+.movie-meta {
+  color: #999;
+
+  font-size: 12px;
+
+  display: flex;
+
+  gap: 6px;
+
+  flex-wrap: wrap;
+}
+
+.movie-info p {
+  color: #666;
+
+  font-size: 12px;
+
+  margin-top: 12px;
+}
+
+/* =========================
+   SWIPE LABELS
+========================= */
+
+.swipe-label {
+  position: absolute;
+
+  top: 25px;
+
+  z-index: 10;
+
+  padding: 7px 12px;
+
+  border: 2px solid;
+
+  border-radius: 5px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.like-label {
+  right: 20px;
+
+  color: #e34b63;
+
+  border-color: #e34b63;
+
+  transform: rotate(5deg);
+}
+
+.pass-label {
+  left: 20px;
+
+  color: #aaa;
+
+  border-color: #aaa;
+
+  transform: rotate(-5deg);
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions {
+  display: flex;
+
+  gap: 25px;
+
+  margin-top: 20px;
+}
+
+.action-button {
+  width: 56px;
+
+  height: 56px;
+
+  border-radius: 50%;
+
+  border: 1px solid #333;
+
+  font-size: 21px;
+
+  cursor: pointer;
+
+  transition: transform 0.15s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.06);
+}
+
+.action-button.pass {
+  background: #151515;
+
+  color: #aaa;
+}
+
+.action-button.like {
+  background: #d9364f;
+
+  border-color: #d9364f;
+
+  color: white;
+}
+
+.swipe-hint {
+  color: #555;
+
+  font-size: 11px;
+
+  margin-top: 14px;
+}
+
+/* =========================
+   LIST PAGES
+========================= */
+
+.list-page {
+  max-width: 1050px;
+
+  margin: auto;
+
+  padding: 45px 30px;
+}
+
+.movie-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(180px, 1fr));
+
+  gap: 18px;
+
+  margin-top: 30px;
+}
+
+.movie-small-card {
+  background: #151515;
+
+  border: 1px solid #252525;
+
+  border-radius: 9px;
+
+  padding: 8px;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.small-poster {
+  height: 225px;
+
+  border-radius: 6px;
+
+  background: #222;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 60px;
+}
+
+.movie-small-card h3 {
+  margin: 12px 6px 5px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+.movie-small-card p {
+  margin: 0 6px 7px;
+
+  color: #777;
+
+  font-size: 11px;
+}
+
+/* =========================
+   MATCH
+========================= */
+
+.match-card {
+  border-color: #493039;
+}
+
+.match-badge {
+  position: absolute;
+
+  z-index: 2;
+
+  top: 14px;
+
+  right: 14px;
+
+  background: #d9364f;
+
+  padding: 4px 7px;
+
+  border-radius: 4px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+.match-message {
+  text-align: center;
+
+  background: #151515;
+
+  border: 1px solid #292929;
+
+  padding: 13px;
+
+  border-radius: 7px;
+
+  margin-top: 25px;
+
+  color: #ccc;
+
+  font-size: 13px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty {
+  text-align: center;
+
+  margin: 70px auto;
+
+  max-width: 400px;
+}
+
+.empty > div {
+  font-size: 45px;
+}
+
+.empty h2 {
+  margin-bottom: 7px;
+
+  font-size: 20px;
+}
+
+.empty p {
+  color: #666;
+
+  font-size: 13px;
+}
+
+.empty button,
+.reset-button {
+  border: none;
+
+  background: #d9364f;
+
+  color: white;
+
+  padding: 10px 17px;
+
+  border-radius: 6px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-top: 8px;
+}
+
+/* =========================
+   FINISHED
+========================= */
+
+.finished {
+  width: 370px;
+
+  height: 525px;
+
+  border-radius: 12px;
+
+  background: #171717;
+
+  border: 1px solid #292929;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.finished-icon {
+  font-size: 60px;
+}
+
+.finished p {
+  color: #666;
+
+  font-size: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    height: auto;
+
+    padding: 12px 15px;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .nav-tabs {
+    width: 100%;
+
+    justify-content: center;
+  }
+
+  .nav-tabs button {
+    padding: 8px 9px;
+
+    font-size: 11px;
+  }
+
+  .main {
+    padding-top: 25px;
+  }
+
+  .heading h1 {
+    font-size: 25px;
+  }
+
+  .swipe-area,
+  .card,
+  .finished {
+    width: min(
+      350px,
+      calc(100vw - 30px)
+    );
+  }
+
+  .swipe-area,
+  .card,
+  .finished {
+    height: 500px;
+  }
+
+  .poster {
+    height: 330px;
+  }
+}
