@@ -1,16 +1,59 @@
-# React + Vite
+# MovieMatch 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+MovieMatch helps two people find a movie they both want to watch. It pulls popular films from The Movie Database (TMDB), then scores them against each person's taste to find common ground.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend:** React 19, Vite
+- **Backend:** Node.js, Express 5
+- **Data:** TMDB API
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies:
 
-## Expanding the Oxlint configuration
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+2. Create a `.env` file in the project root with your TMDB read access token:
+
+   ```
+   TMDB_TOKEN=your_tmdb_read_access_token
+   ```
+
+   Get a token from your TMDB account under Settings → API.
+
+3. Start the backend (runs on port 5000):
+
+   ```bash
+   npm run server
+   ```
+
+4. In a second terminal, start the frontend:
+
+   ```bash
+   npm run dev
+   ```
+
+## API
+
+| Method | Route | Description |
+| ------ | ----- | ----------- |
+| GET | `/` | Health check |
+| GET | `/api/movies?language=en` | Popular movies filtered by original language, with genres and director |
+| GET | `/api/director/:movieId` | Director for a single TMDB movie ID |
+
+## Project structure
+
+```
+server/server.js          Express backend and TMDB proxy
+src/recommendation/       Scoring and common-ground logic
+src/data/                 Sample movie and user data
+src/App.jsx               React UI
+```
+
+## Notes
+
+- `.env` is listed in `.gitignore`, so your token is never committed.
+- This project uses TMDB for non-commercial, personal use.
